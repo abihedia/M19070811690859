@@ -23,13 +23,18 @@ class FleetContINHERIT(models.Model):
                 nombre_jour=date.today()-self.start_date
                 if self.fleet_periodicite == 'mens':
                     self.fleet_duree_rest = nombre_jour.days/30
-                if self.fleet_periodicite == 'trim':
+                elif self.fleet_periodicite == 'trim':
                     self.fleet_duree_rest = nombre_jour.days/90
+                else:
+                    self.fleet_duree_rest =0
+                    
             else:
                 if self.fleet_periodicite == 'mens':
                     self.fleet_duree_rest = (self.expiration_date-self.start_date).days/30
-                if self.fleet_periodicite == 'trim':
+                elif self.fleet_periodicite == 'trim':
                     self.fleet_duree_rest = (self.expiration_date-self.start_date).days/90
+                else:
+                    self.fleet_duree_rest =0
         else:
              self.fleet_duree_rest =0
 
