@@ -18,17 +18,20 @@ class FleetContINHERIT(models.Model):
     @api.depends('start_date')
     @api.onchange('start_date','fleet_duree','fleet_periodicite','expiration_date')
     def duree_rest(self):
-        if self.expiration_date >= date.today():
-            nombre_jour=date.today()-self.start_date
-            if self.fleet_periodicite == 'mens':
-                self.fleet_duree_rest = nombre_jour.days/30
-            if self.fleet_periodicite == 'trim':
-                self.fleet_duree_rest = nombre_jour.days/90
+        if self.expiration_date:
+            if self.expiration_date >= date.today():
+                nombre_jour=date.today()-self.start_date
+                if self.fleet_periodicite == 'mens':
+                    self.fleet_duree_rest = nombre_jour.days/30
+                if self.fleet_periodicite == 'trim':
+                    self.fleet_duree_rest = nombre_jour.days/90
+            else:
+                if self.fleet_periodicite == 'mens':
+                    self.fleet_duree_rest = (self.expiration_date-self.start_date).days/30
+                if self.fleet_periodicite == 'trim':
+                    self.fleet_duree_rest = (self.expiration_date-self.start_date).days/90
         else:
-            if self.fleet_periodicite == 'mens':
-                self.fleet_duree_rest = (self.expiration_date-self.start_date).days/30
-            if self.fleet_periodicite == 'trim':
-                self.fleet_duree_rest = (self.expiration_date-self.start_date).days/90
+             self.fleet_duree_rest =0
 
 
     @api.onchange('start_date','fleet_duree','fleet_periodicite')
