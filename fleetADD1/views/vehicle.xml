@@ -1,0 +1,37 @@
+<odoo>
+<data>
+    <record id="fleet_vehicle_inherit" model="ir.ui.view">
+        <field name="name">fleet_vehicle_inherit</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='return_action_to_open']" position="after" >
+                <button name="return_comp_coleur" type="object" class="oe_stat_button" icon="fa-tachometer" >
+                            <field name="comp_couleur" widget="statinfo" string="Copies couleur"/>
+                </button>
+            </xpath>
+             <xpath expr="//button[@name='return_action_to_open']" position="after" >
+                <button name="return_comp_noir" type="object" class="oe_stat_button" icon="fa-tachometer" >
+                            <field name="comp_noir" widget="statinfo" string="Copies noir"/>
+                </button>
+            </xpath>
+             <xpath expr="//field[@name='company_id']" position="after" >
+                 <group string="Infos contrat">
+                     <field name="fleet_periodicite" />
+                     <field name="fleet_prix_HT" />
+                     <field name="fleet_duree" />
+                     <field name="fleet_date_inst" />
+                      <field name="fleet_expiration_date" />
+                     <div>
+                         <group>
+                          <field name="fleet_duree_rest" />
+                          <field name="fleet_solde_est" />
+                         </group>
+                     </div>
+                 </group>
+             </xpath>
+
+        </field>
+    </record>
+</data>
+</odoo>
