@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 from datetime import date
+import math
 from dateutil.relativedelta import relativedelta
 #add field periodicité
 class FleetContINHERIT(models.Model):
@@ -25,9 +26,9 @@ class FleetContINHERIT(models.Model):
         if self.fleet_expiration_date:
             if self.fleet_expiration_date > date.today():
                 if self.fleet_periodicite == 'mens':
-                    self.fleet_duree_rest = round((self.fleet_expiration_date - date.today()).days / 30)
+                    self.fleet_duree_rest = math.ceil((self.fleet_expiration_date - date.today()).days / 30)
                 elif self.fleet_periodicite == 'trim':
-                    self.fleet_duree_rest = round((self.fleet_expiration_date - date.today()).days / 90)
+                    self.fleet_duree_rest = math.ceil((self.fleet_expiration_date - date.today()).days / 90)
                 else:
                     self.fleet_duree_rest = 0
             else:
