@@ -14,8 +14,8 @@ class SaleOrderHerit(models.Model):
     sale_accord  = fields.Char(string="N° d'accord")
     sale_loyer   = fields.Monetary(string="Loyer")
     #group 3
-    sale_periodicite = fields.Selection([('mens', 'Mensuelle'), ('trim', 'Trimestrielle ')], string='Periodicité')
-    sale_reglement   = fields.Selection([('mens', 'Mensuelle'), ('trim', 'Trimestrielle ')], string='Mode de reglement')
+    sale_periodicite = fields.Selection([('mens', 'Mensuelle'), ('trim', 'Trimestrielle')], string='Periodicité')
+    sale_reglement   = fields.Selection([('mens', 'Mensuelle'), ('trim', 'Trimestrielle')], string='Mode de reglement')
     sale_frais       = fields.Monetary(string="Frais de livraison")
     #########  Rachats page
     #group 1
@@ -37,17 +37,17 @@ class SaleOrderHerit(models.Model):
     sale_cout_actuel_nb = fields.Monetary(string="Cout copie Actuel ")
     sale_cout_actuel_signe_nb = fields.Monetary(string="Ecart Actuel/Signé")
 
-    sale_cout_signe_col = fields.Monetary(string="Coleur: ")
-    sale_cout_actuel_col = fields.Monetary(string="Coleur: ")
-    sale_cout_actuel_signe_col = fields.Monetary(string="Coleur: ")
+    sale_cout_signe_col = fields.Monetary(string="Coleur")
+    sale_cout_actuel_col = fields.Monetary(string="Coleur")
+    sale_cout_actuel_signe_col = fields.Monetary(string="Coleur")
     # group 2
     sale_forfait_signe_nb = fields.Monetary(string="Forfait copie Signé")
     sale_forfait_actuel_nb = fields.Monetary(string="Forfait copie Actuel")
     sale_forfait_actuel_signe_nb = fields.Monetary(string="Ecart Actuel/Signé")
 
-    sale_forfait_signe_col = fields.Monetary(string="Coleur: ")
-    sale_forfait_actuel_col = fields.Monetary(string="Coleur: ")
-    sale_forfait_actuel_signe_col = fields.Monetary(string="Coleur: ")
+    sale_forfait_signe_col = fields.Monetary(string="Coleur")
+    sale_forfait_actuel_col = fields.Monetary(string="Coleur")
+    sale_forfait_actuel_signe_col = fields.Monetary(string="Coleur")
     # group 3
     sale_abonnement_service = fields.Monetary(string="Abonnement Service")
     sale_autre_frais        = fields.Monetary(string="Autre frais")
