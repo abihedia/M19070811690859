@@ -7,10 +7,8 @@ class CrmHerit(models.Model):
                                                ('conversion', 'Conversion')])
     materiels = fields.Char('Matériels')
     num_dossier = fields.Char('Numéro de dossier', readonly=True)
-    date_signature_prevue = fields.Date("Date  de signature prêvue")
-    attachment_ids = fields.Many2many(
-        comodel_name='ir.attachment',
-        string='Pièces jointes')
+    date_signature_prevue = fields.Date('Date de signature prêvue')
+    attachment_ids = fields.Many2many( comodel_name='ir.attachment',string='Pièces jointes')
 
     @api.model
     def create(self, vals):
