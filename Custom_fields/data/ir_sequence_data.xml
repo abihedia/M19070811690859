@@ -4,7 +4,7 @@
 <field name="name">CRM</field>
 <field name="code">crm.num</field>
 <field name="prefix">N</field>
-<field name="padding">3</field>
+<field name="padding">5</field>
 <field name="company_id" eval="False"/>
 </record>
 </data>

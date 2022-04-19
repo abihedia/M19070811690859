@@ -12,6 +12,8 @@
     'website': 'https://www.odoo.com/app/crm',
     'depends': [
         'base_setup',
+        'uom',
+        'base',
         'crm',
         'contacts',
         'fleet',
@@ -20,6 +22,7 @@
         'view/inherit_view_crm.xml',
         'view/inherit_view_fleet.xml',
         'data/ir_sequence_data.xml',
+        'view/inherit_view_partner.xml'
     ],
     'demo': [
     ],
