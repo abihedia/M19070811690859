@@ -20,8 +20,9 @@
     ],
     'data': [
         'view/inherit_view_crm.xml',
-        'view/inherit_view_fleet.xml',      
-         'data/ir_sequence_data.xml',
+        'view/inherit_view_fleet.xml',
+        'data/ir_sequence_data.xml',
+        'view/inherit_view_partner.xml'
     ],
     'demo': [
     ],
