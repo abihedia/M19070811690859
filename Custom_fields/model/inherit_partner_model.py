@@ -4,5 +4,5 @@ class FleetHerit(models.Model):
     _inherit = 'res.partner'
 
     parc_machine = fields.One2many('fleet.vehicle', 'partner_id')
-    num_siren = fields.Char('N° sirene')
+    num_siren = fields.Char("N° sirene")
     activity = fields.Char('activité')
