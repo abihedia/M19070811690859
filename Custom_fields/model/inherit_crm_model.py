@@ -4,7 +4,7 @@ class CrmHerit(models.Model):
     _inherit = 'crm.lead'
 
     action_field = fields.Selection([('nouveau_client', 'Nouveau client'), ('additionnel', 'Additionnel'),
-                                               ('conversion', 'Conversion')], default ='nouveau_client', string="Type de vente")
+                                               ('conversion', 'Conversion')], string="Type de vente")
     materiels = fields.Char('Matériels')
     num_dossier = fields.Char('Numéro de dossier', readonly=True)
     date_signature_prevue = fields.Date('Date de signature prêvue')
