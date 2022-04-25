@@ -8,7 +8,7 @@
                 <field name="inherit_id" ref="crm.crm_lead_view_form"/>
                 <field name="arch" type="xml">
                     <xpath expr="//field[@name='user_id']" position="before" >
-                             <field name="action_field" />
+                             <field name="action_field" required="1"/>
                              <field name="materiels" />
                              <field name="num_dossier" />
 
