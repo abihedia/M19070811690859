@@ -1,0 +1,277 @@
+<odoo>
+<data>
+<record id="sale_order_form_inherit1" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit1</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='name']" position="before">
+                <h1>Dossier N°</h1>
+            </xpath>
+
+            <xpath expr="//form/sheet/group[1]" position="after">
+                     <group name="sale_header_1">
+                        <group name="partner_details_1">
+                            <field name="partner_id" widget="res_partner_many2one" context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}" options="{&quot;always_reload&quot;: True}"/>
+                        </group>
+                        <group name="order_details_1">
+                            <field name="partner_invoice_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'invoice'}" options="{&quot;always_reload&quot;: True}"/>
+                            <field name="partner_shipping_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'delivery'}" options="{&quot;always_reload&quot;: True}"/>
+                        </group>
+                    </group>
+            </xpath>
+
+            <xpath expr="//form/sheet/group[1]" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+
+
+
+
+            <xpath expr="//form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_id']" position="attributes">
+                <attribute name="string" >Code</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='name']" position="attributes">
+                <attribute name="string" >Désignation</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='price_subtotal']" position="attributes">
+                <attribute name="string" >Prix total</attribute>
+            </xpath>
+             <xpath expr="//form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='qty_invoiced']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='qty_delivered']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+                <field name="price_sale" />
+            </xpath>
+
+
+            <xpath expr="//form/sheet/notebook/page[@name='order_lines']" position="attributes">
+                <attribute name="string" >Matériels</attribute>
+            </xpath>
+            <!--
+            <field name="tax_totals_json" position="after">
+                <field name="sale_marge" />  &#160;
+            </field>
+            -->
+            <xpath expr="//form/sheet/notebook/page/group[1]" position="after">
+                <group name="note_group1" col="6" class="mt-2 mt-md-0">
+                                <group colspan="4">
+                                    <field name="note" class="oe-bordered-editor" nolabel="1" placeholder="Terms and conditions..."/>
+                                </group>
+                                <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total1">
+                                    <field name="sale_marge" colspan="2"/>
+                                </group>
+                                <div class="oe_clear"/>
+                 </group>
+            </xpath>
+
+            <xpath expr="//form/sheet/notebook/page/group[1]" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+
+
+            <xpath expr="//field[@name='tax_totals_json']" position="after">
+                <field name="sale_marge" />
+            </xpath>
+
+            <xpath expr="//form/sheet/notebook/page[@name='other_information']" position="before">
+                <page string="Financement" name="financement">
+                   <group >
+
+                         <table  style="width:100%;" class="table table-sm">
+                                  <thead>
+                                    <tr>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                            <tr>
+                                                <td><strong> Type </strong> </td>
+                                                <td><field name="sale_type" nolabel="1"  /> </td>
+                                                <td><strong>Durée</strong> </td>
+                                                <td><field name="sale_duree" nolabel="1"  />   </td>
+                                                <td><strong>Periodicité</strong> </td>
+                                                <td><field name="sale_periodicite" nolabel="1"  />   </td>
+                                             </tr>
+                                              <tr>
+                                                <td><strong>Leaser</strong> </td>
+                                                <td><field name="sale_leaser" nolabel="1"  /> </td>
+                                                <td><strong>N° d'accord</strong> </td>
+                                                <td><field name="sale_accord" nolabel="1"  />   </td>
+                                                <td><strong>Mode de reglement</strong> </td>
+                                                <td><field name="sale_reglement" nolabel="1"  />   </td>
+                                             </tr>
+                                              <tr>
+                                                <td><strong>Montant financé</strong> </td>
+                                                <td><field name="sale_finance" nolabel="1"  /> </td>
+                                                <td><strong>Loyer</strong> </td>
+                                                <td><field name="sale_loyer" nolabel="1"  />   </td>
+                                                <td><strong>Frais de livraison</strong> </td>
+                                                <td><field name="sale_frais" nolabel="1"  />   </td>
+                                             </tr>
+
+                                  </tbody>
+                            </table>
+
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page[@name='other_information']" position="before">
+                <page string="Rachats" name="rachats">
+                    <group >
+
+                         <table  style="width:100%;" class="table table-sm">
+                                  <thead>
+                                    <tr>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                            <tr>
+                                                <td><strong> VR clients </strong> </td>
+                                                <td><field name="sale_vr_client" nolabel="1"  /> </td>
+                                                <td><strong>Leaser </strong> </td>
+                                                <td><field name="sale_leaser_ra" nolabel="1"  />   </td>
+                                                <td><strong>N° d'accord </strong> </td>
+                                                <td><field name="sale_accord_rachat" nolabel="1"  />   </td>
+                                             </tr>
+                                              <tr>
+                                                <td><strong> IR prospects </strong> </td>
+                                                <td><field name="sale_ir_prospects" nolabel="1"  /> </td>
+                                                <td><strong>Partenariat </strong> </td>
+                                                <td><field name="sale_partenariat" nolabel="1"  />   </td>
+                                                <td><strong>Solde en 2 fois</strong> </td>
+                                                <td><field name="sale_solde_2_fois" nolabel="1"  />   </td>
+                                             </tr>
+                                              <tr>
+                                                <td><strong>Rachat matriél</strong> </td>
+                                                <td><field name="sale_rachat_matriel" nolabel="1"  /> </td>
+                                                <td><strong>Marque et référence </strong> </td>
+                                                <td><field name="sale_marque_reference" nolabel="1"  />   </td>
+                                                <td><strong>Gratuitée</strong> </td>
+                                                <td><field name="sale_Gratuite" nolabel="1"  />   </td>
+                                             </tr>
+
+                                  </tbody>
+                            </table>
+
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page[@name='other_information']" position="before">
+                <page string="Maintenance" name="maintenance">
+                <group >
+                       <group>
+                         <table  style="width:100%;" class="table table-sm">
+                                  <thead>
+                                    <tr>
+                                        <th > </th>
+                                        <th ><strong>NB </strong></th>
+                                        <th ><strong>Coleur </strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                            <tr>
+                                                <td><strong> Cout copie Signé </strong> </td>
+
+                                                <td><field name="sale_cout_signe_nb" nolabel="1"  /> </td>
+
+                                                <td><field name="sale_cout_signe_col" nolabel="1"  />   </td>
+                                             </tr>
+                                             <tr>
+                                                <td><strong> Cout copie Actuel </strong> </td>
+
+                                                <td><field name="sale_cout_actuel_nb" nolabel="1"  /> </td>
+
+                                                <td><field name="sale_cout_actuel_col" nolabel="1"  />   </td>
+                                             </tr>
+                                              <tr>
+                                                <td><strong> Ecart Actuel/Signé </strong> </td>
+
+                                                <td><field name="sale_cout_actuel_signe_nb" nolabel="1"  /> </td>
+
+                                                <td><field name="sale_cout_actuel_signe_col" nolabel="1"  />   </td>
+                                             </tr>
+
+                                  </tbody>
+                            </table>
+                           </group>
+                    <group>
+                    <table  style="width:100%;" class="table table-sm" >
+                                  <thead>
+                                    <tr>
+                                        <th > </th>
+                                        <th ><strong>NB </strong></th>
+                                        <th ><strong>Coleur </strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                            <tr>
+                                                <td><strong> Forfait copie Signé </strong> </td>
+
+                                                <td><field name="sale_forfait_signe_nb" nolabel="1"  /> </td>
+
+                                                <td><field name="sale_forfait_signe_col" nolabel="1"  />   </td>
+                                             </tr>
+                                             <tr>
+                                                <td><strong> Forfait copie Actuel</strong> </td>
+
+                                                <td><field name="sale_forfait_actuel_nb" nolabel="1"  /> </td>
+
+                                                <td><field name="sale_forfait_actuel_col" nolabel="1"  />   </td>
+                                             </tr>
+                                              <tr>
+                                                <td><strong> Ecart Actuel/Signé </strong> </td>
+
+                                                <td><field name="sale_forfait_actuel_signe_nb" nolabel="1"  /> </td>
+
+                                                <td><field name="sale_forfait_actuel_signe_col" nolabel="1"  />   </td>
+                                             </tr>
+                                  </tbody>
+                            </table>
+
+                          </group>
+
+                                 <group >
+                                            <field name="sale_abonnement_service" />
+                                            <field name="sale_autre_frais" />
+                                 </group>
+
+                 </group>
+                </page>
+            </xpath>
+
+            <xpath expr="//form/sheet/notebook/page[@name='other_information']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page[@name='customer_signature']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/field/tree/control/create[@name='add_section_control']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+
+        </field>
+ </record>
+
+<record id="sale_order_form_inherit2" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit2</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_management.sale_order_form_quote"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='optional_products']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+        </field>
+</record>
+
+
+</data>
+</odoo>
