@@ -56,7 +56,7 @@ class FleetContINHERIT(models.Model):
     @api.depends('fleet_prix_HT','fleet_duree_rest')
     def solde_estimatif(self):
         for rec in self:
-            rec.fleet_solde_est = self.fleet_prix_HT*self.fleet_duree_rest
+            rec.fleet_solde_est = rec.fleet_prix_HT*rec.fleet_duree_rest
 
     @api.depends('fleet_expiration_date')
     @api.onchange('fleet_date_inst', 'fleet_duree', 'fleet_periodicite', 'fleet_expiration_date')
