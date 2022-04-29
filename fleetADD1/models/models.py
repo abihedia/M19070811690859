@@ -29,6 +29,7 @@ class FleetContINHERIT(models.Model):
 
     @api.depends('fleet_periodicite','fleet_duree')
     def trimestre_help(self):
+        self.ensure_one()
         if self.fleet_periodicite =='trim':
             if self.fleet_duree > 1:
                 self.fleet_trimestre_help = "Trimestres"
@@ -40,6 +41,7 @@ class FleetContINHERIT(models.Model):
             self.fleet_trimestre_help = " "
     @api.depends('fleet_periodicite','fleet_duree_rest')
     def trimestre_help1(self):
+        self.ensure_one()
         if self.fleet_periodicite =='trim':
             if self.fleet_duree_rest > 1:
                 self.fleet_trimestre_help1 = "Trimestres"
@@ -53,11 +55,13 @@ class FleetContINHERIT(models.Model):
 
     @api.depends('fleet_prix_HT','fleet_duree_rest')
     def solde_estimatif(self):
+        self.ensure_one()
         self.fleet_solde_est = self.fleet_prix_HT*self.fleet_duree_rest
 
     @api.depends('fleet_expiration_date')
     @api.onchange('fleet_date_inst', 'fleet_duree', 'fleet_periodicite', 'fleet_expiration_date')
     def duree_rest(self):
+        self.ensure_one()
         if self.fleet_expiration_date:
             if self.fleet_expiration_date > date.today():
                 if self.fleet_periodicite == 'mens':
@@ -81,6 +85,7 @@ class FleetContINHERIT(models.Model):
             self.fleet_duree_rest = 0
     @api.onchange('fleet_date_inst','fleet_duree','fleet_periodicite')
     def fleet_date_fin(self):
+        self.ensure_one()
         if self.fleet_date_inst:
             if self.fleet_periodicite == 'mens':
                 if self.fleet_duree>0:
@@ -128,9 +133,11 @@ class FleetContINHERIT(models.Model):
                              ############# help Unit
     fleet_unit_HT_Copie = fields.Char(string="help 1", compute="HT_Copie")
     def HT_Copie(self):
+        self.ensure_one()
         self.fleet_unit_HT_Copie="HT/Copie"
     fleet_unit_Copie = fields.Char(string="help 1", compute="Copie_unit")
     def Copie_unit(self):
+        self.ensure_one()
         self.fleet_unit_Copie ="Copies"
 
     ######################
